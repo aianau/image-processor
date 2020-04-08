@@ -1,0 +1,8 @@
+import imquality.brisque as brisque
+import PIL.Image
+
+
+file_paths = ["1.jpg", "2.jpg", "3.png", "4.png", "5.jfif"]
+for file_path in file_paths:
+    img = PIL.Image.open(file_path)
+    print("For image {} quality score is: {}".format(file_path, brisque.score(img)))
