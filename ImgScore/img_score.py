@@ -60,11 +60,6 @@ def calculate_scores(arg):
         raise Exception("Argumentul nu este nici lista, nici path de imagine, nici director!")
 
 
-# usecase 1  functia primeste o lista de path-uri catre imagini
-#dict_scores_1 = calculate_scores(["C:\\Users\\Desktop\\anaaremere.jpg", "andreea.png", "alexandra.jpg"])
-
-# usecase 2  functia primeste un nume de folder care contine path-uri de imagini
-dict_scores_2 = calculate_scores("images")
-print(dict_scores_2)
-# usecase 3
-#tupla = calculate_scores("andreea.png")
+if __name__ == '__main__':
+    dict_scores_2 = calculate_scores("images")
+    print(dict_scores_2)
