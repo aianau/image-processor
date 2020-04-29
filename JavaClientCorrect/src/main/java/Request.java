@@ -1,10 +1,10 @@
 import java.io.*;
 
 public class Request {
-    void run(){
+    void run(String jsonPath){
         ProcessBuilder processBuilder = new ProcessBuilder();
 //      al treilea argument al functiei command este de forma "curl -H \"content-Type:application/json\" -d jsonFilePath URL\n"
-        processBuilder.command("bash", "-c", "curl -H \"Content-Type:application/json\" -d @/home/s/IdeaProjects/JavaClientCorrect/jsonFile.json https://szmuschi.pythonanywhere.com/api\n");
+        processBuilder.command("bash", "-c", "curl -H \"Content-Type:application/json\" -d " + jsonPath + " https://szmuschi.pythonanywhere.com/api\n");
         try {
 
             Process process = processBuilder.start();

@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="JavaClient" />
+        <module name="JavaClientCorrect" />
         <module name="NewTest" />
+        <module name="JavaClient" />
       </profile>
     </annotationProcessing>
   </component>

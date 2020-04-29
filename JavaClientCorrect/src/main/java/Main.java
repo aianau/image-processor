@@ -2,12 +2,15 @@ import java.io.*;
 import java.util.Base64;
 import org.json.simple.*;
 
-
+//acest program trebuie rulat cu doua argumente: imagePath si jsonPath
 public class Main
 {
     public static void main(String[] args) throws Exception{
         try {
-            File f = new File("./src/images/images.jpg"); // the image send
+            String imgPath = args[0];
+            String jsonPath = args[1];
+//            File f = new File("./src/images/images.jpg"); // the image send
+            File f = new File(imgPath);
             try {
                 String encodstring = encodeFileToBase64Binary(f); // the base64 encoding
                 System.out.println("Successfully encoded image to base64!");
@@ -35,8 +38,8 @@ public class Main
 
 //                      making the post request and printing the result
                         Request request = new Request();
-                        request.run();
-
+//                        request.run("@/home/s/IdeaProjects/JavaClientCorrect/jsonFile.json");
+                        request.run(jsonPath);
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
