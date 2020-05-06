@@ -1,25 +1,44 @@
 import json
-import cv2
-import requests
-import time
 import os
+import time
+import cv2
 import psutil
-from glob import glob
+import requests
 
-img_mask = 'imgs/*.jpg'
-img_names = glob(img_mask)
+class TestApi:
+    def __init__(self):
+        self.URL ='http://szmuschi.pythonanywhere.com/'
 
-process = psutil.Process(os.getpid())
-addr = 'http://szmuschi.pythonanywhere.com/'
-test_url = addr + '/api'
+    def test_request(self, image_path):
 
-content_type = 'image/jpg'
-headers = {'content-type': content_type}
-for fn in img_names:
-    start_time = time.time()
-    img = cv2.imread(fn, 0)  #inlocuiti 'savedImage.jpg' cu imaginea care va intereseaza
-    _, img_encoded = cv2.imencode('.jpg', img)
-    response = requests.post(test_url, data=img_encoded.tostring(), headers=headers)
-    print(json.loads(response.text))
-    print("--- %s seconds ---" % (time.time() - start_time))
-    print("---", process.memory_info().rss/1000, "kilobytes")    # in bytes
+        start_time = time.time()
+        process = psutil.Process(os.getpid())
+        addr =self.URL
+        test_url = addr + '/api'
+        content_type = 'image/jpeg'
+        headers = {'content-type': content_type}
+
+        img = cv2.imread('imgs/'+image_path)#inlocuiti 'savedImage.jpg' cu imaginea care va intereseaza
+        _, img_encoded = cv2.imencode('.jpg', img)
+        response = requests.post(test_url, data=img_encoded.tostring(), headers=headers)
+        print(json.loads(response.text))
+        print("--- %s seconds ---" % (time.time() - start_time))
+        print("---", process.memory_info().rss / 1000, "kilobytes")  # in bytes
+
+if __name__ == '__main__':
+    test_api = TestApi()
+
+    test_api.test_request('cover.jpg')
+    print("expected: Anthem by Ayn Rand /n")
+    test_api.test_request('cover1.jpg')
+    print("expected: Pride and Prejudice by jane asutin /n")
+    test_api.test_request('cover2.jpg')
+    print("expected: the greatest treasure bu marius oelsching /n")
+    test_api.test_request('cover3.jpg')
+    print("expected: the happy lemon/n")
+    test_api.test_request('cover4.jpg')
+    print("expected: the book title by author name/n")
+    test_api.test_request('cover5.jpg')
+    print("expected: the crying book by heather christle /n")
+    test_api.test_request('cover7.jpg')
+    print("expected: red queen /n")
